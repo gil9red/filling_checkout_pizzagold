@@ -1,0 +1,16 @@
+{
+  "title": "filling_checkout_pizzagold",
+  "name": "fillingcheckoutpizzagold",
+  "version": "0.0.1",
+  "description": "filling_checkout_pizzagold",
+  "main": "index.js",
+  "author": "Ilya Petrash",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ]
+}
