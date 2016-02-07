@@ -1,3 +1,6 @@
+// https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/tabs
+// https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/cookies
+
 var DEBUG = true;
 
 function d(mess) {
