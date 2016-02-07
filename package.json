@@ -1,8 +1,8 @@
 {
-  "title": "filling_checkout_pizzagold",
-  "name": "fillingcheckoutpizzagold",
+  "title": "Filling checkout pizzagold",
+  "name": "Filling_checkout_pizzagold",
   "version": "0.0.1",
-  "description": "filling_checkout_pizzagold",
+  "description": "Filling checkout pizzagold",
   "main": "index.js",
   "author": "Ilya Petrash",
   "engines": {
