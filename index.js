@@ -11,8 +11,7 @@ var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
 var pageMod = require("sdk/page-mod");
 
-// Основная часть url раздач, например http://torrent.mgn.ru/viewtopic.php?t=72938
-var URL_TORRENT = 'http://www.pizzagold.ru/basket';
+var URL = 'http://www.pizzagold.ru/basket';
 
 if (DEBUG) {
     d("Open debug tab");
@@ -26,28 +25,24 @@ if (DEBUG) {
 }
 
 // Ссылка на кнопку плагина
-var download_torrent_mgn_ru = null;
-
-d("Add handlers activate and open tabs");
-
+var button_plugin = null;
 
 function createButton() {
     d("Start create button");
-    d(download_torrent_mgn_ru == null ? "Button not exist, create button" : "Button exist");
+    d(button_plugin == null ? "Button not exist, create button" : "Button exist");
 
     // Создаем кнопку
-    if (download_torrent_mgn_ru == null) {
-        // Кнопка клика кнопки скачивания раздачи и кнопки "спасибо" сайта http://torrent.mgn.ru
-        download_torrent_mgn_ru = buttons.ActionButton({
-            id: "download_torrent_mgn_ru",
-            label: "Download and thank torrent from torrent.mgn.ru",
-            icon: "./favicon.ico",
+    if (button_plugin == null) {
+        button_plugin = buttons.ActionButton({
+            id: "button_plugin",
+            label: "Заполнение полей \"Оформление заказа\"",
+            icon: "./icon.ico",
 
             // При клике выполняем скрипт
             onClick: function () {
                 // Для активной вкладки вызываем скрипт
                 tabs.activeTab.attach({
-//                    contentScriptFile: "./download_and_thank.js"
+                    contentScriptFile: "./do_filling.js"
                 });
             }
         });
@@ -58,11 +53,11 @@ function createButton() {
 
 function deleteButton() {
     d("Start delete button");
-    d(download_torrent_mgn_ru != null ? "Button exist, delete button" : "Button not exist");
+    d(button_plugin != null ? "Button exist, delete button" : "Button not exist");
 
-    if (download_torrent_mgn_ru != null) {
-        download_torrent_mgn_ru.destroy()
-        download_torrent_mgn_ru = null;
+    if (button_plugin != null) {
+        button_plugin.destroy()
+        button_plugin = null;
     }
 
     d("Finish delete button");
@@ -78,7 +73,7 @@ function checkTab() {
 
     d("Start check tab " + tab.url);
 
-    if (tab.url.startsWith(URL_TORRENT)) {
+    if (tab.url.startsWith(URL)) {
         createButton();
     } else {
         deleteButton();
@@ -87,9 +82,11 @@ function checkTab() {
     d("Finish check tab " + tab.url);
 }
 
+d("Add handlers activate and open tabs");
+
 pageMod.PageMod({
-    include: ["http://www.pizzagold.ru/basket",
-              "https://www.pizzagold.ru/basket"],
+    include: ["http://www.pizzagold.ru/basket*",
+              "https://www.pizzagold.ru/basket*"],
     // The same is true in the regular expression, but it is harder to understand
     //include: /https?:\/\/torrent\.mgn\.ru\/?.*/,
 
@@ -105,14 +102,12 @@ pageMod.PageMod({
         tab.on('activate', function() {
             d('on activate tab ' + tab.url + ' start');
             checkTab();
-            //createButton();
             d('on activate tab finish');
         });
 
         tab.on('pageshow', function() {
             d('on pageshow tab ' + tab.url + ' start');
             checkTab();
-            //createButton();
             d('on pageshow tab finish');
         });
 
@@ -128,6 +123,5 @@ pageMod.PageMod({
         });
     }
 });
-
 
 d("Finish plugin");
