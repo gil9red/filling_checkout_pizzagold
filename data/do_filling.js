@@ -12,6 +12,13 @@ function getElementByXpath(path) {
 function do_filling() {
     d("do_filling start.");
 
+//    with JQuery
+//    $("#gadget_url").val("");
+
+//    results.singleNodeValue.textContent
+
+//    getElementByXpath('//input[@id="user_login"]').textContent = 'dfdf';
+
     document.getElementById('user_login').value = 'Login';
     document.getElementById('user_email').value = 'Email';
     document.getElementById('user_password').value = 'Password';
