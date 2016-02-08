@@ -15,14 +15,19 @@ var tabs = require("sdk/tabs");
 var pageMod = require("sdk/page-mod");
 
 var URL = 'http://www.pizzagold.ru/basket';
+var INCLUDES = ["http://www.pizzagold.ru/basket*", "https://www.pizzagold.ru/basket*"];
+
+URL = 'https://github.com/settings/profile';
 
 if (DEBUG) {
     d("Open debug tab");
 
-    tabs.open('http://torrent.mgn.ru');
-    tabs.open('http://www.pizzagold.ru/basket/');
-    tabs.open('http://torrent.mgn.ru/viewtopic.php?t=78458');
-    tabs.open('http://www.pizzagold.ru/basket');
+//    tabs.open('http://torrent.mgn.ru');
+//    tabs.open('http://www.pizzagold.ru/basket/');
+//    tabs.open('http://torrent.mgn.ru/viewtopic.php?t=78458');
+//    tabs.open('http://www.pizzagold.ru/basket');
+//    tabs.open('https://github.com/settings/profile');
+    tabs.open('https://github.com/join?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fprofile&source=login');
 
     tabs[0].close();
 }
@@ -53,6 +58,10 @@ function createButton() {
 
     d("Finish create button");
 }
+
+
+createButton();
+
 
 function deleteButton() {
     d("Start delete button");
@@ -85,46 +94,44 @@ function checkTab() {
     d("Finish check tab " + tab.url);
 }
 
-d("Add handlers activate and open tabs");
 
-pageMod.PageMod({
-    include: ["http://www.pizzagold.ru/basket*",
-              "https://www.pizzagold.ru/basket*"],
-    // The same is true in the regular expression, but it is harder to understand
-    //include: /https?:\/\/torrent\.mgn\.ru\/?.*/,
-
-    attachTo: ["existing", "top"],
-
-    onAttach: function onAttach(worker) {
-        var tab = worker.tab;
-
-        d('onAttach ' + worker.url + ' (' + tab.title + ')');
-
-        checkTab();
-
-        tab.on('activate', function() {
-            d('on activate tab ' + tab.url + ' start');
-            checkTab();
-            d('on activate tab finish');
-        });
-
-        tab.on('pageshow', function() {
-            d('on pageshow tab ' + tab.url + ' start');
-            checkTab();
-            d('on pageshow tab finish');
-        });
-
-        tab.on('deactivate', function() {
-            d('on deactivate tab ' + tab.url + ' start');
-            deleteButton();
-            d('on deactivate tab finish');
-        });
-        tab.on('close', function() {
-            d('on close tab ' + tab.url + ' start');
-            deleteButton();
-            d('on close tab finish');
-        });
-    }
-});
+//pageMod.PageMod({
+//    include: INCLUDES,
+//    // The same is true in the regular expression, but it is harder to understand
+//    //include: /https?:\/\/torrent\.mgn\.ru\/?.*/,
+//
+//    attachTo: ["existing", "top"],
+//
+//    onAttach: function onAttach(worker) {
+//        var tab = worker.tab;
+//
+//        d('onAttach ' + worker.url + ' (' + tab.title + ')');
+//
+//        checkTab();
+//
+//        tab.on('activate', function() {
+//            d('on activate tab ' + tab.url + ' start');
+//            checkTab();
+//            d('on activate tab finish');
+//        });
+//
+//        tab.on('pageshow', function() {
+//            d('on pageshow tab ' + tab.url + ' start');
+//            checkTab();
+//            d('on pageshow tab finish');
+//        });
+//
+//        tab.on('deactivate', function() {
+//            d('on deactivate tab ' + tab.url + ' start');
+//            deleteButton();
+//            d('on deactivate tab finish');
+//        });
+//        tab.on('close', function() {
+//            d('on close tab ' + tab.url + ' start');
+//            deleteButton();
+//            d('on close tab finish');
+//        });
+//    }
+//});
 
 d("Finish plugin");
