@@ -25,9 +25,9 @@ if (DEBUG) {
 //    tabs.open('http://torrent.mgn.ru');
 //    tabs.open('http://www.pizzagold.ru/basket/');
 //    tabs.open('http://torrent.mgn.ru/viewtopic.php?t=78458');
-//    tabs.open('http://www.pizzagold.ru/basket');
+    tabs.open('http://www.pizzagold.ru/basket');
 //    tabs.open('https://github.com/settings/profile');
-    tabs.open('https://github.com/join?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fprofile&source=login');
+//    tabs.open('https://github.com/join?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fprofile&source=login');
 
     tabs[0].close();
 }
