@@ -6,6 +6,8 @@ function d(mess) {
 function do_filling() {
     d("do_filling start.");
 
+//    alert( document.cookie );
+
     // Имя
     document.getElementById('ORDER_NAME').value = 'Имя';
 

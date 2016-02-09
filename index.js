@@ -14,6 +14,30 @@ var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
 var pageMod = require("sdk/page-mod");
 
+//const fileIO = require("sdk/io/file");
+//
+//let path = "E:/";
+//let list = fileIO.list(path);
+//
+//for (i = 0; i < list.length; i++) {
+//  let item = fileIO.join(path, list[i]);
+//  if (fileIO.isFile(item)) {
+//    console.log(item + " is a file");
+//  }
+//  else {
+//    console.log(item + " is a directory");
+//  }
+//}
+//
+////var ss = require("sdk/simple-storage");
+//////ss.storage.myArray = [1, 1, 2, 3, 5, 8, 13];
+//////ss.storage.myBoolean = true;
+//////ss.storage.myNull = null;
+//////ss.storage.myNumber = 3.1337;
+//////ss.storage.myObject = { a: "foo", b: { c: true }, d: null };
+//////ss.storage.myString = "O frabjous day!";
+////d(ss);
+
 var URL = 'http://www.pizzagold.ru/basket';
 var INCLUDES = ["http://www.pizzagold.ru/basket*", "https://www.pizzagold.ru/basket*"];
 
@@ -25,8 +49,8 @@ if (DEBUG) {
 //    tabs.open('http://torrent.mgn.ru');
 //    tabs.open('http://www.pizzagold.ru/basket/');
 //    tabs.open('http://torrent.mgn.ru/viewtopic.php?t=78458');
-    tabs.open('http://www.pizzagold.ru/basket');
-//    tabs.open('https://github.com/settings/profile');
+//    tabs.open('http://www.pizzagold.ru/basket');
+    tabs.open('https://github.com/settings/profile');
 //    tabs.open('https://github.com/join?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fprofile&source=login');
 
     tabs[0].close();
