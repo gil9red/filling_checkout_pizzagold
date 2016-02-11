@@ -14,17 +14,19 @@ var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
 var pageMod = require("sdk/page-mod");
 
-// http://stackoverflow.com/questions/3796084/about-config-preferences-and-js
-let { Cc, Ci } = require('chrome');
+//https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/simple-storage
 
-// Get the "accessibility." branch
-var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).getBranch("accessibility.");
-
-// prefs is an nsIPrefBranch.
-// Look in the above section for examples of getting one.
-var value = prefs.getBoolPref("typeaheadfind"); // get a pref (accessibility.typeaheadfind)
-d('value=' + value)
-//prefs.setBoolPref("typeaheadfind", !value); // set a pref (accessibility.typeaheadfind)
+//// http://stackoverflow.com/questions/3796084/about-config-preferences-and-js
+//let { Cc, Ci } = require('chrome');
+//
+//// Get the "accessibility." branch
+//var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).getBranch("accessibility.");
+//
+//// prefs is an nsIPrefBranch.
+//// Look in the above section for examples of getting one.
+//var value = prefs.getBoolPref("typeaheadfind"); // get a pref (accessibility.typeaheadfind)
+//d('value=' + value)
+////prefs.setBoolPref("typeaheadfind", !value); // set a pref (accessibility.typeaheadfind)
 
 //const fileIO = require("sdk/io/file");
 //
