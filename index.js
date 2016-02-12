@@ -16,6 +16,18 @@ var pageMod = require("sdk/page-mod");
 
 //https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/simple-storage
 
+//https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox?as=u&utm_source=inproduct
+// xpinstall.signatures.required
+
+//var ss = require("sdk/simple-storage");
+//ss.storage.myArray = [1, 1, 2, 3, 5, 8, 13];
+//ss.storage.myBoolean = true;
+//ss.storage.myNull = null;
+//ss.storage.myNumber = 3.1337;
+//ss.storage.myObject = { a: "foo", b: { c: true }, d: null };
+//ss.storage.myString = "O frabjous day!";
+//d(ss);
+
 //// http://stackoverflow.com/questions/3796084/about-config-preferences-and-js
 //let { Cc, Ci } = require('chrome');
 //
@@ -64,10 +76,10 @@ if (DEBUG) {
 //    tabs.open('http://www.pizzagold.ru/basket/');
 //    tabs.open('http://torrent.mgn.ru/viewtopic.php?t=78458');
 //    tabs.open('http://www.pizzagold.ru/basket');
-    tabs.open('https://github.com/settings/profile');
+//    tabs.open('https://github.com/settings/profile');
 //    tabs.open('https://github.com/join?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fprofile&source=login');
 
-    tabs[0].close();
+//    tabs[0].close();
 }
 
 // Ссылка на кнопку плагина
