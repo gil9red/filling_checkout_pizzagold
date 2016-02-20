@@ -39,6 +39,9 @@ var button_plugin = null;
 
 var prefs = require("sdk/simple-prefs").prefs;
 
+// TODO: чтобы изменения настроек были актуальны нужно Отключить и Включить плагин.
+// Перезагрузка браузера тоже должна помочь
+
 var order_name = prefs.my_name;
 var order_personal_phone = prefs.my_phone;
 var order_email = prefs.my_email;
