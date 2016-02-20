@@ -1,7 +1,7 @@
 // https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/tabs
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/cookies
 
-var DEBUG = false;
+var DEBUG = true;
 
 function d(mess) {
     DEBUG && console.log(mess);
@@ -13,56 +13,6 @@ d("Start plugin");
 var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
 var pageMod = require("sdk/page-mod");
-
-//https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/simple-storage
-
-//https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox?as=u&utm_source=inproduct
-// xpinstall.signatures.required
-
-//var ss = require("sdk/simple-storage");
-//ss.storage.myArray = [1, 1, 2, 3, 5, 8, 13];
-//ss.storage.myBoolean = true;
-//ss.storage.myNull = null;
-//ss.storage.myNumber = 3.1337;
-//ss.storage.myObject = { a: "foo", b: { c: true }, d: null };
-//ss.storage.myString = "O frabjous day!";
-//d(ss);
-
-//// http://stackoverflow.com/questions/3796084/about-config-preferences-and-js
-//let { Cc, Ci } = require('chrome');
-//
-//// Get the "accessibility." branch
-//var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).getBranch("accessibility.");
-//
-//// prefs is an nsIPrefBranch.
-//// Look in the above section for examples of getting one.
-//var value = prefs.getBoolPref("typeaheadfind"); // get a pref (accessibility.typeaheadfind)
-//d('value=' + value)
-////prefs.setBoolPref("typeaheadfind", !value); // set a pref (accessibility.typeaheadfind)
-
-//const fileIO = require("sdk/io/file");
-//
-//let path = "E:/";
-//let list = fileIO.list(path);
-//
-//for (i = 0; i < list.length; i++) {
-//  let item = fileIO.join(path, list[i]);
-//  if (fileIO.isFile(item)) {
-//    console.log(item + " is a file");
-//  }
-//  else {
-//    console.log(item + " is a directory");
-//  }
-//}
-//
-////var ss = require("sdk/simple-storage");
-//////ss.storage.myArray = [1, 1, 2, 3, 5, 8, 13];
-//////ss.storage.myBoolean = true;
-//////ss.storage.myNull = null;
-//////ss.storage.myNumber = 3.1337;
-//////ss.storage.myObject = { a: "foo", b: { c: true }, d: null };
-//////ss.storage.myString = "O frabjous day!";
-////d(ss);
 
 var URL = 'http://www.pizzagold.ru/basket';
 var INCLUDES = ["http://www.pizzagold.ru/basket*", "https://www.pizzagold.ru/basket*"];
@@ -76,32 +26,60 @@ if (DEBUG) {
 //    tabs.open('http://www.pizzagold.ru/basket/');
 //    tabs.open('http://torrent.mgn.ru/viewtopic.php?t=78458');
 //    tabs.open('http://www.pizzagold.ru/basket');
-//    tabs.open('https://github.com/settings/profile');
+    tabs.open('https://github.com/settings/profile');
 //    tabs.open('https://github.com/join?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fprofile&source=login');
 
 //    tabs[0].close();
 }
 
-//var pref = require("sdk/simple-prefs");
-//console.log("simple-pref: " + pref);
-//console.log(pref);
-//
-//console.log("somePreference: " + pref.prefs.somePreference);
-
-//preferences["somePreference"] = "this is the default string value";
-//pref.prefs.somePreference = "Vasya!";
-//console.log("somePreference: " + pref.prefs.somePreference);
-
-//var preferences = require("sdk/simple-prefs").prefs;
-//
-//console.log(preferences.somePreference);
-//preferences.somePreference = "this is a new value";
-//
-//console.log(prefs["somePreference"]); // bracket notation
-//preferences["somePreference"] = "this is the default string value";
-
 // Ссылка на кнопку плагина
 var button_plugin = null;
+
+var prefs = require("sdk/simple-prefs").prefs;
+
+var order_name = prefs.my_name;
+var order_personal_phone = prefs.my_phone;
+var order_email = prefs.my_email;
+var order_personal_street = prefs.my_street;
+var order_personal_pager = prefs.my_pager;
+var order_personal_mailbox = prefs.my_mailbox;
+var order_personal_notes = prefs.my_notes;
+
+var contentScript = "function set(id, value) {" +
+"    var el = document.getElementById(id);" +
+"    if (el != null) el.value = value;" +
+"}\n" +
+
+"// Имя\n" +
+"set('ORDER_NAME', <order_name>);\n" +
+
+"// Телефон (обязательный)\n" +
+"set('ORDER_PERSONAL_PHONE', <order_personal_phone>);\n" +
+
+"// Почта\n" +
+"set('ORDER_EMAIL', <order_email>);\n" +
+
+"// Улица\n" +
+"set('ORDER_PERSONAL_STREET', <order_personal_street>);\n" +
+
+"// Дом\n" +
+"set('ORDER_PERSONAL_PAGER', <order_personal_pager>);\n" +
+
+"// Квартира\n" +
+"set('ORDER_PERSONAL_MAILBOX', <order_personal_mailbox>);\n" +
+
+"// Комментарий к заказу\n" +
+"set('ORDER_PERSONAL_NOTES', <order_personal_notes>);\n"
+
+.replace("<order_name>", order_name)
+.replace("<order_personal_phone>", order_personal_phone)
+.replace("<order_email>", order_email)
+.replace("<order_personal_street>", order_personal_street)
+.replace("<order_personal_pager>", order_personal_pager)
+.replace("<order_personal_mailbox>", order_personal_mailbox)
+.replace("<order_personal_notes>", order_personal_notes);
+
+d(contentScript);
 
 function createButton() {
     d("Start create button");
@@ -118,7 +96,7 @@ function createButton() {
             onClick: function () {
                 // Для активной вкладки вызываем скрипт
                 tabs.activeTab.attach({
-                    contentScriptFile: "./do_filling.js"
+                    contentScript: contentScript
                 });
             }
         });

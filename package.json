@@ -1,8 +1,8 @@
 {
   "title": "Filling checkout pizzagold",
   "name": "filling_checkout_pizzagold",
-  "version": "0.0.13",
-  "description": "Заполнение полей Оформления заказа",
+  "version": "0.0.14",
+  "description": "Заполнение полей \"Оформления заказа\"",
   "main": "index.js",
   "author": "Ilya Petrash",
   "engines": {
@@ -15,23 +15,12 @@
   ],
 
   "preferences": [
-    {
-      "name": "my_name",
-      "value": "<name>",
-      "title": "Name",
-      "type": "string"
-    },
-    {
-      "name": "my_phone",
-      "value": "<phone>",
-      "title": "Phone",
-      "type": "string"
-    },
-    {
-      "name": "my_email",
-      "value": "<email>",
-      "title": "Email",
-      "type": "string"
-    }
+    { "name": "my_name", "title": "Имя", "type": "string", "value": "<name>" },
+    { "name": "my_phone", "title": "Телефон (обязательный)", "type": "string", "value": "<phone>" },
+    { "name": "my_email", "title": "Почта", "type": "string", "value": "<email>" },
+    { "name": "my_street", "title": "Улица", "type": "string", "value": "<street>" },
+    { "name": "my_pager", "title": "Дом", "type": "string", "value": "<pager>" },
+    { "name": "my_mailbox", "title": "Квартира", "type": "string", "value": "<mailbox>" },
+    { "name": "my_notes", "title": "Комментарий к заказу", "type": "string", "value": "<notes>" }
   ]
 }
