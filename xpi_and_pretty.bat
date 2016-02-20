@@ -1,0 +1,1 @@
+jpm xpi && python pretty_xpi.py

@@ -1,7 +1,7 @@
 {
   "title": "Filling checkout pizzagold",
   "name": "filling_checkout_pizzagold",
-  "version": "0.0.1",
+  "version": "0.0.13",
   "description": "Заполнение полей Оформления заказа",
   "main": "index.js",
   "author": "Ilya Petrash",
@@ -12,5 +12,26 @@
   "license": "MIT",
   "keywords": [
     "jetpack"
+  ],
+
+  "preferences": [
+    {
+      "name": "my_name",
+      "value": "<name>",
+      "title": "Name",
+      "type": "string"
+    },
+    {
+      "name": "my_phone",
+      "value": "<phone>",
+      "title": "Phone",
+      "type": "string"
+    },
+    {
+      "name": "my_email",
+      "value": "<email>",
+      "title": "Email",
+      "type": "string"
+    }
   ]
 }

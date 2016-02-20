@@ -1,7 +1,7 @@
 // https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/tabs
 // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/cookies
 
-var DEBUG = true;
+var DEBUG = false;
 
 function d(mess) {
     DEBUG && console.log(mess);
@@ -81,6 +81,24 @@ if (DEBUG) {
 
 //    tabs[0].close();
 }
+
+//var pref = require("sdk/simple-prefs");
+//console.log("simple-pref: " + pref);
+//console.log(pref);
+//
+//console.log("somePreference: " + pref.prefs.somePreference);
+
+//preferences["somePreference"] = "this is the default string value";
+//pref.prefs.somePreference = "Vasya!";
+//console.log("somePreference: " + pref.prefs.somePreference);
+
+//var preferences = require("sdk/simple-prefs").prefs;
+//
+//console.log(preferences.somePreference);
+//preferences.somePreference = "this is a new value";
+//
+//console.log(prefs["somePreference"]); // bracket notation
+//preferences["somePreference"] = "this is the default string value";
 
 // Ссылка на кнопку плагина
 var button_plugin = null;
