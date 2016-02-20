@@ -1,7 +1,7 @@
 {
   "title": "Filling checkout pizzagold",
   "name": "filling_checkout_pizzagold",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Заполнение полей \"Оформления заказа\"",
   "main": "index.js",
   "author": "Ilya Petrash",

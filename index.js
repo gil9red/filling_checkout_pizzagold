@@ -1,5 +1,7 @@
+// https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/simple-prefs
+// https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/pageMod
+// https://developer.mozilla.org/en-US/Add-ons/SDK/Low-Level_APIs/ui_button_action
 // https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/tabs
-// https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/cookies
 
 var DEBUG = true;
 
@@ -77,7 +79,12 @@ var contentScript = "function set(id, value) {" +
 "set('ORDER_PERSONAL_MAILBOX', '<order_personal_mailbox>');\n" +
 
 "// Комментарий к заказу\n" +
-"set('ORDER_PERSONAL_NOTES', '<order_personal_notes>');\n";
+"set('ORDER_PERSONAL_NOTES', '<order_personal_notes>');\n" +
+
+"// Ставим галочку для 'Я соглашаюсь с условиями оплаты и доставки.'\n" +
+"var el = document.getElementsByClassName('checkboxLabel');\n" +
+"if (el.length > 0) el[0].className += ' checked';"
+;
 
 contentScript = contentScript
 .replace("<order_name>", order_name)
@@ -87,10 +94,6 @@ contentScript = contentScript
 .replace("<order_personal_pager>", order_personal_pager)
 .replace("<order_personal_mailbox>", order_personal_mailbox)
 .replace("<order_personal_notes>", order_personal_notes);
-
-
-// TODO: ставить галочку напротив: Я соглашаюсь с условиями оплаты и доставки.
-//<input value="Y" name="OFFER" type="checkbox">
 
 d(contentScript);
 
